@@ -7,8 +7,8 @@ import { Repository } from "typeorm";
 import {
   TLoginRequest,
   TLoginResponse,
-} from "../../Interfaces/login.interfaces";
-import User from "../../Entities/users.entities";
+} from "../../interfaces/login.interfaces";
+import User from "../../entities/users.entities";
 
 const createSessionService = async (
   loginData: TLoginRequest
