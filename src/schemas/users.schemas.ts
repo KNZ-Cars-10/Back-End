@@ -13,7 +13,7 @@ export const userSchema = z.object({
   city: z.string(),
   street: z.string(),
   number: z.string(),
-  complement: z.string().nullish(),
+  complement: z.string().nullable(),
   is_advertise: z.boolean(),
   createdAt: z.date(),
 });
@@ -27,6 +27,11 @@ export const userSchemaRegister = userSchema
     password: z.string(),
     confirm_password: z.string(),
   });
+
+export const userSchemaRequest = userSchema.omit({
+  id: true,
+  createdAt: true,
+});
 
 export const updateUserSchema = userSchemaRegister.partial();
 

@@ -23,7 +23,7 @@ class User {
   @Column({ type: "varchar" })
   cpf: string;
 
-  @Column({ type: "varchar" })
+  @Column({ type: "varchar", unique: true })
   phone: string;
 
   @Column({ type: "date" })
@@ -48,7 +48,7 @@ class User {
   number: string;
 
   @Column({ type: "varchar", nullable: true })
-  complement: string;
+  complement: string | null;
 
   @Column({})
   is_advertise: boolean;
