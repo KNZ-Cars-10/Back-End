@@ -18,8 +18,6 @@ export const userSchema = z.object({
   createdAt: z.date(),
 });
 
-export const usersSchema = userSchema.array();
-
 export const userSchemaRegister = userSchema
   .omit({
     id: true,
@@ -31,3 +29,5 @@ export const userSchemaRegister = userSchema
   });
 
 export const updateUserSchema = userSchemaRegister.partial();
+
+export const usersSchema = userSchema.array();
