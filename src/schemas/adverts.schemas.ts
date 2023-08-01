@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { userSchema } from "./users.schemas";
 
 export const advertSchema = z.object({
   id: z.number(),
@@ -20,6 +21,10 @@ export const advertSchema = z.object({
 export const advertSchemaRequest = advertSchema.omit({
   id: true,
   createdAt: true,
+});
+
+export const advertSchemaResponse = advertSchema.extend({
+  user: userSchema,
 });
 
 export const updateAdvertSchema = advertSchemaRequest.partial();
