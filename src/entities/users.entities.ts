@@ -5,9 +5,11 @@ import {
   CreateDateColumn,
   BeforeInsert,
   BeforeUpdate,
+  OneToMany,
 } from "typeorm";
 
 import { getRounds, hashSync } from "bcryptjs";
+import Advert from "./adverts.entities";
 
 @Entity("users")
 class User {
@@ -61,6 +63,9 @@ class User {
 
   @CreateDateColumn({ type: "date" })
   createdAt?: Date | string;
+
+  @OneToMany(() => Advert, (advert) => advert.user, { nullable: true })
+  contacts: Advert[] | null | undefined;
 
   @BeforeInsert()
   @BeforeUpdate()

@@ -3,7 +3,9 @@ import {
   Column,
   PrimaryGeneratedColumn,
   CreateDateColumn,
+  ManyToOne,
 } from "typeorm";
+import User from "./users.entities";
 
 @Entity("adverts")
 class Advert {
@@ -48,6 +50,9 @@ class Advert {
 
   @CreateDateColumn({ type: "date" })
   createdAt?: Date | string;
+
+  @ManyToOne(() => User, (user) => user.contacts, { onDelete: "CASCADE" })
+  user: User;
 }
 
 export default Advert;
