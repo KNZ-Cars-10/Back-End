@@ -1,6 +1,7 @@
 import { Router } from "express";
 import {
   createUserController,
+  deleteUserController,
   listAllUserController,
   listUserbyIdController,
   updateUserController,
@@ -38,6 +39,14 @@ usersRoutes.patch(
   checkOwnerUser,
   checkRequestBody(updateUserSchema),
   updateUserController
+);
+
+usersRoutes.delete(
+  "/:id",
+  ensureTokenExistis,
+  checkParameterUserId,
+  checkOwnerUser,
+  deleteUserController
 );
 
 export default usersRoutes;
