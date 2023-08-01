@@ -50,7 +50,7 @@ class User {
   @Column({ type: "varchar", nullable: true })
   complement: string | null;
 
-  @Column({})
+  @Column()
   is_advertise: boolean;
 
   @Column({ type: "varchar" })
