@@ -1,9 +1,9 @@
 import { Request, Response } from "express";
-import createUserService from "../Services/users/createUsers.service";
+import createUserService from "../Services/users/createUser.service";
 import listAllUsersService from "../Services/users/listUsers.service";
-import deleteUserService from "../Services/users/deleteUsers.service";
+import deleteUserService from "../Services/users/deleteUser.service";
 import listUserByIdService from "../Services/users/listUserById.service";
-import updateUserService from "../Services/users/updateUsers.service";
+import updateUserService from "../Services/users/updateUser.service";
 import {
   TUser,
   TUserRegister,
