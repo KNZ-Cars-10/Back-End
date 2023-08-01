@@ -34,7 +34,7 @@ export const userSchemaRequest = userSchema.omit({
   createdAt: true,
 });
 
-export const responseUserSchema = userSchema.extend({
+export const userSchemaResponse = userSchema.extend({
   adverts: z.optional(advertSchema).array(),
 });
 
@@ -44,4 +44,4 @@ export const updateUserSchema = userSchemaRegister
   })
   .partial();
 
-export const usersSchema = userSchema.array();
+export const usersSchema = userSchemaResponse.array();

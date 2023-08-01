@@ -51,7 +51,7 @@ class Advert {
   @CreateDateColumn({ type: "date" })
   createdAt?: Date | string;
 
-  @ManyToOne(() => User, (user) => user.contacts, { onDelete: "CASCADE" })
+  @ManyToOne(() => User, (user) => user.adverts, { onDelete: "CASCADE" })
   user: User;
 }
 

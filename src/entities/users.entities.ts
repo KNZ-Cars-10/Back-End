@@ -65,7 +65,7 @@ class User {
   createdAt?: Date | string;
 
   @OneToMany(() => Advert, (advert) => advert.user, { nullable: true })
-  contacts: Advert[] | null | undefined;
+  adverts: Advert[] | null | undefined;
 
   @BeforeInsert()
   @BeforeUpdate()
