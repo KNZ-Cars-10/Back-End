@@ -6,7 +6,7 @@ export const userSchema = z.object({
   email: z.string().email(),
   cpf: z.string(),
   phone: z.string(),
-  birth_date: z.date(),
+  birth_date: z.string(),
   description: z.string(),
   zip_code: z.string(),
   state: z.string(),
@@ -15,7 +15,7 @@ export const userSchema = z.object({
   number: z.string(),
   complement: z.string().nullable(),
   is_advertise: z.boolean(),
-  createdAt: z.date(),
+  createdAt: z.string(),
 });
 
 export const userSchemaRegister = userSchema

@@ -23,11 +23,11 @@ class User {
   @Column({ type: "varchar" })
   cpf: string;
 
-  @Column({ type: "varchar", unique: true })
+  @Column({ type: "varchar" })
   phone: string;
 
   @Column({ type: "date" })
-  birth_date: Date;
+  birth_date: Date | string;
 
   @Column({ type: "varchar" })
   description: string;
