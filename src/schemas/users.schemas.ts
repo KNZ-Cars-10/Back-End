@@ -33,6 +33,10 @@ export const userSchemaRequest = userSchema.omit({
   createdAt: true,
 });
 
-export const updateUserSchema = userSchemaRegister.partial();
+export const updateUserSchema = userSchemaRegister
+  .omit({
+    confirm_password: true,
+  })
+  .partial();
 
 export const usersSchema = userSchema.array();

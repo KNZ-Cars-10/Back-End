@@ -1,8 +1,8 @@
 import { NextFunction, Request, Response } from "express";
 import { AppError } from "../error";
-import { TUser } from "../Interfaces/users.interfaces";
+import { TUser } from "../interfaces/users.interfaces";
 
-const verifyOwner = async (
+const checkOwnerUser = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -17,4 +17,4 @@ const verifyOwner = async (
   return next();
 };
 
-export default verifyOwner;
+export default checkOwnerUser;

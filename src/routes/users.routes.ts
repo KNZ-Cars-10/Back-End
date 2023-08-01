@@ -3,12 +3,14 @@ import {
   createUserController,
   listAllUserController,
   listUserbyIdController,
+  updateUserController,
 } from "../controllers/users.controllers";
 import checkRequestBody from "../middlewares/checkRequestBody.middleware";
-import { userSchemaRegister } from "../schemas/users.schemas";
+import { updateUserSchema, userSchemaRegister } from "../schemas/users.schemas";
 import checkEmailUser from "../middlewares/checkEmailUser.middleware";
 import ensureTokenExistis from "../middlewares/ensuretokenexistis.middleware";
 import checkParameterUserId from "../middlewares/checkParameterUserId.middleware";
+import checkOwnerUser from "../middlewares/checkOwnerUser.middleware";
 
 const usersRoutes: Router = Router();
 
@@ -26,6 +28,16 @@ usersRoutes.get(
   ensureTokenExistis,
   checkParameterUserId,
   listUserbyIdController
+);
+
+usersRoutes.patch(
+  "/:id",
+  ensureTokenExistis,
+  checkParameterUserId,
+  checkEmailUser,
+  checkOwnerUser,
+  checkRequestBody(updateUserSchema),
+  updateUserController
 );
 
 export default usersRoutes;
