@@ -18,13 +18,17 @@ const checkParameterAdvertId = async (
     where: {
       id: AdvertId,
     },
+
+    relations: {
+      user: true,
+    },
   });
 
   if (!advert) {
     throw new AppError("Advert not found", 404);
   }
 
-  res.locals.advert = advert;
+  res.locals.advertUser = advert.user;
   return next();
 };
 

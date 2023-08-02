@@ -13,6 +13,7 @@ import {
   updateAdvertSchema,
 } from "../schemas/adverts.schemas";
 import checkParameterAdvertId from "../middlewares/checkParameterAdvertId.middleware";
+import checkOwnerAdvert from "../middlewares/checkOwnerAdvert.middleware";
 
 const advertsRouter = Router();
 
@@ -30,8 +31,9 @@ advertsRouter.get("/:id", checkParameterAdvertId, listAdvertbyIdController);
 advertsRouter.patch(
   "/:id",
   ensureTokenExistis,
-  checkRequestBody(updateAdvertSchema),
   checkParameterAdvertId,
+  checkRequestBody(updateAdvertSchema),
+  checkOwnerAdvert,
   updateAdvertbyIdController
 );
 
@@ -39,7 +41,7 @@ advertsRouter.delete(
   "/:id",
   ensureTokenExistis,
   checkParameterAdvertId,
-  checkParameterAdvertId,
+  checkOwnerAdvert,
   deleteAdvertController
 );
 
