@@ -11,10 +11,6 @@ const checkParameterUserId = async (
 ): Promise<Response | void> => {
   const userId = parseInt(req.params.id);
 
-  // if (!userId) {
-  //   userId = res.locals.sub;
-  // }
-
   const userRepository: Repository<User> = AppDataSource.getRepository(User);
 
   const user: User | null = await userRepository.findOne({
