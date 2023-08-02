@@ -5,9 +5,11 @@ import {
   CreateDateColumn,
   BeforeInsert,
   BeforeUpdate,
+  OneToMany,
 } from "typeorm";
 
 import { getRounds, hashSync } from "bcryptjs";
+import Advert from "./adverts.entities";
 
 @Entity("users")
 class User {
@@ -27,7 +29,7 @@ class User {
   phone: string;
 
   @Column({ type: "date" })
-  birth_date: Date | string;
+  birth_date: string;
 
   @Column({ type: "varchar" })
   description: string;
@@ -50,7 +52,7 @@ class User {
   @Column({ type: "varchar", nullable: true })
   complement: string | null;
 
-  @Column({})
+  @Column()
   is_advertise: boolean;
 
   @Column({ type: "varchar" })
@@ -59,8 +61,8 @@ class User {
   @Column({ type: "varchar" })
   confirm_password: string;
 
-  @CreateDateColumn({ type: "date" })
-  createdAt?: Date | string;
+  @OneToMany(() => Advert, (advert) => advert.user, { nullable: true })
+  adverts: Advert[] | null | undefined;
 
   @BeforeInsert()
   @BeforeUpdate()
