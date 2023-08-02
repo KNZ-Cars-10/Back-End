@@ -8,7 +8,7 @@ import {
   TUser,
   TUserRegister,
   TUserRequest,
-  TUsers,
+  TUserResponse,
 } from "../interfaces/users.interfaces";
 
 export const createUserController = async (
@@ -26,7 +26,7 @@ export const listAllUserController = async (
   _req: Request,
   res: Response
 ): Promise<Response> => {
-  const users: TUsers | null = await listAllUsersService();
+  const users: TUserResponse[] | null = await listAllUsersService();
   return res.json(users);
 };
 
