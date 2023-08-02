@@ -33,7 +33,7 @@ class Advert {
   @Column({ type: "varchar" })
   price_FIPE: string;
 
-  @Column({ type: "varchar", length: 2 })
+  @Column({ type: "varchar" })
   price: string;
 
   @Column({ type: "varchar" })

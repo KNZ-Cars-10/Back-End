@@ -5,8 +5,8 @@ import {
   TAdvertRequest,
   TAdvertResponse,
 } from "../../interfaces/adverts.interfaces";
-import { userSchemaResponse } from "../../schemas/users.schemas";
-import { TUser, TUserResponse } from "../../interfaces/users.interfaces";
+import { userSchema } from "../../schemas/users.schemas";
+import { TUser } from "../../interfaces/users.interfaces";
 import Advert from "../../entities/adverts.entities";
 import { advertSchemaResponse } from "../../schemas/adverts.schemas";
 import { AppError } from "../../error";
@@ -14,7 +14,9 @@ import { AppError } from "../../error";
 const createAdvertService = async (
   contactData: TAdvertRequest,
   userId: number
-): Promise<TAdvertResponse> => {
+
+  // Tem que resolve
+): Promise<any> => {
   const userRepository: Repository<User> = AppDataSource.getRepository(User);
 
   const user: User | null = await userRepository.findOne({
@@ -27,7 +29,7 @@ const createAdvertService = async (
     throw new AppError("User not Found", 404);
   }
 
-  const foundUser: TUser = userSchemaResponse.parse(user);
+  const foundUser: TUser = userSchema.parse(user);
 
   const newAdvertData = {
     ...contactData,
@@ -37,13 +39,17 @@ const createAdvertService = async (
   const advertRepository: Repository<Advert> =
     AppDataSource.getRepository(Advert);
 
-  const advert: Advert = advertRepository.create(newAdvertData);
+  const advert = advertRepository.create(newAdvertData);
 
   await advertRepository.save(advert);
 
-  const returnAdvert = advertSchemaResponse.parse(advert);
+  console.log(advert);
 
-  return returnAdvert;
+  // Tem que resolve
+
+  // const returnAdvert = advertSchemaResponse.parse(advert);
+
+  return advert;
 };
 
 export default createAdvertService;

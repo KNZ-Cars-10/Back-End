@@ -5,6 +5,7 @@ import { handleErrors } from "./error";
 import cors from "cors";
 import usersRoutes from "./routes/users.routes";
 import loginRouter from "./routes/login.routes";
+import advertsRouter from "./routes/adverts.routes";
 
 const app: Application = express();
 
@@ -17,6 +18,8 @@ app.use(cors());
 app.use("/users", usersRoutes);
 
 app.use("/login", loginRouter);
+
+app.use("/adverts", advertsRouter);
 
 app.use(handleErrors);
 
