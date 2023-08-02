@@ -48,9 +48,6 @@ class Advert {
   @Column({ type: "varchar", nullable: true })
   second_image: string | null;
 
-  @CreateDateColumn({ type: "date" })
-  createdAt?: Date | string;
-
   @ManyToOne(() => User, (user) => user.adverts, { onDelete: "CASCADE" })
   user: User;
 }

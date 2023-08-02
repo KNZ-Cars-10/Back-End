@@ -16,7 +16,6 @@ export const userSchema = z.object({
   number: z.string(),
   complement: z.string().nullable(),
   is_advertise: z.boolean(),
-  createdAt: z.string(),
 });
 
 export const userSchemaRegister = userSchema

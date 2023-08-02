@@ -29,7 +29,7 @@ class User {
   phone: string;
 
   @Column({ type: "date" })
-  birth_date: Date | string;
+  birth_date: string;
 
   @Column({ type: "varchar" })
   description: string;
@@ -60,9 +60,6 @@ class User {
 
   @Column({ type: "varchar" })
   confirm_password: string;
-
-  @CreateDateColumn({ type: "date" })
-  createdAt?: Date | string;
 
   @OneToMany(() => Advert, (advert) => advert.user, { nullable: true })
   adverts: Advert[] | null | undefined;

@@ -1,5 +1,8 @@
 import { Router } from "express";
-import { createAdvertController } from "../controllers/adverts.controllers";
+import {
+  createAdvertController,
+  listAllAdvertsController,
+} from "../controllers/adverts.controllers";
 import ensureTokenExistis from "../middlewares/ensuretokenexistis.middleware";
 import checkRequestBody from "../middlewares/checkRequestBody.middleware";
 import { advertSchemaRequest } from "../schemas/adverts.schemas";
@@ -12,5 +15,7 @@ advertsRouter.post(
   ensureTokenExistis,
   createAdvertController
 );
+
+advertsRouter.get("", listAllAdvertsController);
 
 export default advertsRouter;

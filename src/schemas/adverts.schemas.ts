@@ -15,7 +15,6 @@ export const advertSchema = z.object({
   cover_image: z.string().nullable(),
   first_image: z.string().nullable(),
   second_image: z.string().nullable(),
-  createdAt: z.string(),
 });
 
 export const advertSchemaRequest = advertSchema.omit({
@@ -29,4 +28,4 @@ export const advertSchemaResponse = advertSchema.extend({
 
 export const updateAdvertSchema = advertSchemaRequest.partial();
 
-export const advertsSchema = advertSchema.array();
+export const advertsSchema = advertSchemaResponse.array();
