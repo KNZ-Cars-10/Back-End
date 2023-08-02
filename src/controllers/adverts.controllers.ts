@@ -6,6 +6,7 @@ import {
 } from "../interfaces/adverts.interfaces";
 import listAllAdvertsService from "../Services/adverts/listAdverts.service";
 import listAdvertByIdService from "../Services/adverts/listAdvertById.service";
+import updateAdvertService from "../Services/adverts/updateAdvertById.service";
 
 export const createAdvertController = async (
   req: Request,
@@ -34,6 +35,22 @@ export const listAdvertbyIdController = async (
   const advertId = parseInt(req.params.id);
 
   const advert: TAdvertResponse | null = await listAdvertByIdService(advertId);
+
+  return res.json(advert);
+};
+
+export const updateAdvertbyIdController = async (
+  req: Request,
+  res: Response
+): Promise<Response> => {
+  const advertId = parseInt(req.params.id);
+
+  const advertData = req.body;
+
+  const advert: TAdvertResponse | null = await updateAdvertService(
+    advertId,
+    advertData
+  );
 
   return res.json(advert);
 };

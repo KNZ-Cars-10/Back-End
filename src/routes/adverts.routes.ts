@@ -3,6 +3,7 @@ import {
   createAdvertController,
   listAdvertbyIdController,
   listAllAdvertsController,
+  updateAdvertbyIdController,
 } from "../controllers/adverts.controllers";
 import ensureTokenExistis from "../middlewares/ensuretokenexistis.middleware";
 import checkRequestBody from "../middlewares/checkRequestBody.middleware";
@@ -21,5 +22,7 @@ advertsRouter.post(
 advertsRouter.get("", listAllAdvertsController);
 
 advertsRouter.get("/:id", checkParameterAdvertId, listAdvertbyIdController);
+
+advertsRouter.patch("/:id", checkParameterAdvertId, updateAdvertbyIdController);
 
 export default advertsRouter;
