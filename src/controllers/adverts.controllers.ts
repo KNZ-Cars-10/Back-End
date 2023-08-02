@@ -7,6 +7,7 @@ import {
 import listAllAdvertsService from "../Services/adverts/listAdverts.service";
 import listAdvertByIdService from "../Services/adverts/listAdvertById.service";
 import updateAdvertService from "../Services/adverts/updateAdvertById.service";
+import deleteAdvertService from "../Services/adverts/deleteAdverts.service";
 
 export const createAdvertController = async (
   req: Request,
@@ -53,4 +54,15 @@ export const updateAdvertbyIdController = async (
   );
 
   return res.json(advert);
+};
+
+export const deleteAdvertController = async (
+  req: Request,
+  res: Response
+): Promise<Response> => {
+  const advertId: number = parseInt(req.params.id);
+
+  await deleteAdvertService(advertId);
+
+  return res.status(204).send();
 };
