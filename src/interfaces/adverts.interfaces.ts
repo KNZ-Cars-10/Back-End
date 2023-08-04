@@ -6,7 +6,6 @@ import {
   advertsSchema,
   updateAdvertSchema,
 } from "../schemas/adverts.schemas";
-import Advert from "../entities/adverts.entities";
 
 export type TPaginationAdvert = {
   prevPage: string | null;

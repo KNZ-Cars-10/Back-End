@@ -39,7 +39,6 @@ export const listAllAdvertsController = async (
   // const order: any = req.query.order;
   // const sort: any = req.query.sort;
 
-  console.log(page);
   const adverts: TPaginationAdvert | null = await listAllAdvertsService(
     page,
     perPage

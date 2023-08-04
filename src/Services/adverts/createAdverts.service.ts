@@ -41,8 +41,6 @@ const createAdvertService = async (
 
   await advertRepository.save(advert);
 
-  console.log(advert);
-
   const returnAdvert: TAdvertResponse = advertSchemaResponse.parse(advert);
 
   return returnAdvert;

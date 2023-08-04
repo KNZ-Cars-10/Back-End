@@ -5,10 +5,7 @@ import {
   TAdvertResponse,
   TPaginationAdvert,
 } from "../../interfaces/adverts.interfaces";
-import {
-  advertSchemaResponse,
-  advertsSchemaResponse,
-} from "../../schemas/adverts.schemas";
+import { advertsSchemaResponse } from "../../schemas/adverts.schemas";
 
 const listAllAdvertsService = async (
   page: number,
@@ -84,9 +81,6 @@ const listAllAdvertsService = async (
       },
     });
   } else {
-    console.log((page - 1) * perPage);
-    console.log(perPage);
-
     adverts = await advertRepository.find({
       relations: {
         user: true,
