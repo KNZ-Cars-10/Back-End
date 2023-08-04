@@ -13,7 +13,7 @@ export const userSchema = z.object({
   state: z.string(),
   city: z.string(),
   street: z.string(),
-  number: z.string(),
+  number: z.number(),
   complement: z.string().nullable(),
   is_advertise: z.boolean(),
 });

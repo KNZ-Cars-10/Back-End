@@ -46,8 +46,8 @@ class User {
   @Column({ type: "varchar" })
   street: string;
 
-  @Column({ type: "varchar" })
-  number: string;
+  @Column({ type: "int" })
+  number: number;
 
   @Column({ type: "varchar", nullable: true })
   complement: string | null;

@@ -37,10 +37,10 @@ const updateAdvertService = async (
 
   //   Tem que Resolve
 
-  //   const returnAdvert: TAdvertResponse =
-  //     advertSchemaResponse.parse(newAdvertData);
+  const returnAdvert: TAdvertResponse =
+    advertSchemaResponse.parse(newAdvertData);
 
-  return newAdvertData;
+  return returnAdvert;
 };
 
 export default updateAdvertService;

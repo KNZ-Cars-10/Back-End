@@ -5,6 +5,10 @@ import {
   TAdvertResponse,
   TPaginationAdvert,
 } from "../../interfaces/adverts.interfaces";
+import {
+  advertSchemaResponse,
+  advertsSchemaResponse,
+} from "../../schemas/adverts.schemas";
 
 const listAllAdvertsService = async (
   page: number,
@@ -103,16 +107,14 @@ const listAllAdvertsService = async (
     nextPage = null;
   }
 
+  const returnAdverts: TAdvertResponse[] = advertsSchemaResponse.parse(adverts);
+
   const returnGetAdverts = {
     prevPage: prevPage,
     nextPage: nextPage,
     count: count,
-    data: adverts,
+    data: returnAdverts,
   };
-
-  // Tem que resolve
-
-  //   const returnAdverts: TAdvertResponse[] = advertsSchema.parse(adverts);
 
   return returnGetAdverts;
 };

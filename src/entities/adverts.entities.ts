@@ -18,23 +18,23 @@ class Advert {
   @Column({ type: "varchar" })
   model: string;
 
-  @Column({ type: "varchar" })
-  year: string;
+  @Column({ type: "int" })
+  year: number;
 
   @Column({ type: "varchar" })
   fuel: string;
 
-  @Column({ type: "varchar" })
-  mileage: string;
+  @Column({ type: "int" })
+  mileage: number;
 
   @Column({ type: "varchar" })
   color: string;
 
-  @Column({ type: "varchar" })
-  price_FIPE: string;
+  @Column({ type: "int" })
+  price_FIPE: number;
 
-  @Column({ type: "varchar" })
-  price: string;
+  @Column({ type: "int" })
+  price: number;
 
   @Column({ type: "varchar" })
   description: string;
