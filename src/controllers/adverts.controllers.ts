@@ -26,16 +26,25 @@ export const listAllAdvertsController = async (
   req: Request,
   res: Response
 ): Promise<Response> => {
-  const page: number | undefined = Number(req.query.page);
-  const perPage: number | undefined = Number(req.query.perPage);
-  const order: any = req.query.order;
-  const sort: any = req.query.sort;
+  let page: any = req.query.page;
+  if (page) {
+    page = parseInt(page);
+  }
 
+  let perPage: any = req.query.perPage;
+  if (perPage) {
+    perPage = parseInt(perPage);
+  }
+
+  // const order: any = req.query.order;
+  // const sort: any = req.query.sort;
+
+  console.log(page);
   const adverts: TPaginationAdvert | null = await listAllAdvertsService(
     page,
-    perPage,
-    order,
-    sort
+    perPage
+    // order,
+    // sort
   );
   return res.json(adverts);
 };

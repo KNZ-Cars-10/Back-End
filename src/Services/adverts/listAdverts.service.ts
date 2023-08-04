@@ -2,17 +2,15 @@ import { Repository } from "typeorm";
 import { AppDataSource } from "../../data-source";
 import Advert from "../../entities/adverts.entities";
 import {
-  TAdvert,
   TAdvertResponse,
   TPaginationAdvert,
 } from "../../interfaces/adverts.interfaces";
-import { advertsSchema } from "../../schemas/adverts.schemas";
 
 const listAllAdvertsService = async (
   page: number,
-  perPage: number,
-  order: any,
-  sort: any
+  perPage: number
+  // order: any,
+  // sort: any
 ): Promise<TPaginationAdvert | null> => {
   if (!page) {
     page = 1;
@@ -33,8 +31,8 @@ const listAllAdvertsService = async (
   const advertRepository: Repository<Advert> =
     AppDataSource.getRepository(Advert);
 
-  let orderObj = {};
-  let adverts: TAdvert[] | undefined;
+  // let orderObj = {};
+  let adverts: TAdvertResponse[] | undefined;
   let prevPage: string | null = `http://localhost:3000/adverts?page=${
     page - 1
   }&perPage=${perPage}`;
@@ -44,27 +42,30 @@ const listAllAdvertsService = async (
   let maxPage: number;
   let count: number;
 
-  if (!order || !sort) {
-    order = "asc";
-  }
+  // if (!order || !sort) {
+  //   order = "asc";
+  // }
 
-  if (order !== "asc" && order !== "desc") {
-    order = "asc";
-  }
+  // if (order !== "asc" && order !== "desc") {
+  //   order = "asc";
+  // }
 
-  if (sort == "price") {
-    orderObj = {
-      price: order,
-    };
-  } else if (sort == "duration") {
-    orderObj = {
-      duration: order,
-    };
-  } else {
-    orderObj = {
-      id: order,
-    };
-  }
+  // if (sort == "price") {
+  //   orderObj = {
+  //     price: order,
+  //   };
+  // }
+  //  else if (sort == "year") {
+  //   orderObj = {
+  //     year: order,
+  //   };
+  // }
+
+  // else {
+  //   orderObj = {
+  //     id: order,
+  //   };
+  // }
 
   adverts = await advertRepository.find();
 
@@ -74,21 +75,26 @@ const listAllAdvertsService = async (
 
   if (!page || !perPage) {
     adverts = await advertRepository.find({
-      order: orderObj,
+      order: {
+        id: "ASC",
+      },
     });
   } else {
+    console.log((page - 1) * perPage);
+    console.log(perPage);
+
     adverts = await advertRepository.find({
+      relations: {
+        user: true,
+      },
+
       skip: (page - 1) * perPage,
       take: perPage,
-      order: orderObj,
+      order: {
+        id: "ASC",
+      },
     });
   }
-
-  const returnAdverts: TAdvertResponse[] | null = await advertRepository.find({
-    relations: {
-      user: true,
-    },
-  });
 
   if (page == 1) {
     prevPage = null;
@@ -97,18 +103,18 @@ const listAllAdvertsService = async (
     nextPage = null;
   }
 
-  const returnGetMovies = {
+  const returnGetAdverts = {
     prevPage: prevPage,
     nextPage: nextPage,
     count: count,
-    data: returnAdverts,
+    data: adverts,
   };
 
   // Tem que resolve
 
   //   const returnAdverts: TAdvertResponse[] = advertsSchema.parse(adverts);
 
-  return returnGetMovies;
+  return returnGetAdverts;
 };
 
 export default listAllAdvertsService;
