@@ -3,6 +3,7 @@ import createAdvertService from "../Services/adverts/createAdverts.service";
 import {
   TAdvertRequest,
   TAdvertResponse,
+  TPaginationAdvert,
 } from "../interfaces/adverts.interfaces";
 import listAllAdvertsService from "../Services/adverts/listAdverts.service";
 import listAdvertByIdService from "../Services/adverts/listAdvertById.service";
@@ -22,10 +23,20 @@ export const createAdvertController = async (
 };
 
 export const listAllAdvertsController = async (
-  _req: Request,
+  req: Request,
   res: Response
 ): Promise<Response> => {
-  const adverts: TAdvertResponse[] | null = await listAllAdvertsService();
+  const page: number | undefined = Number(req.query.page);
+  const perPage: number | undefined = Number(req.query.perPage);
+  const order: any = req.query.order;
+  const sort: any = req.query.sort;
+
+  const adverts: TPaginationAdvert | null = await listAllAdvertsService(
+    page,
+    perPage,
+    order,
+    sort
+  );
   return res.json(adverts);
 };
 
