@@ -10,6 +10,8 @@ import {
 export type TPaginationAdvert = {
   prevPage: string | null;
   nextPage: string | null;
+  pages: number;
+  page: number;
   count: number;
   data: TAdvertResponse[];
 };

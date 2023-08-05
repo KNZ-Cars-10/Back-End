@@ -106,6 +106,8 @@ const listAllAdvertsService = async (
   const returnGetAdverts = {
     prevPage: prevPage,
     nextPage: nextPage,
+    page: page,
+    pages: Math.ceil(maxPage),
     count: count,
     data: returnAdverts,
   };

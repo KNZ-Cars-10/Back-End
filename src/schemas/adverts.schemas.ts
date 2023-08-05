@@ -17,7 +17,7 @@ export const advertSchema = z.object({
   other_images: z.string().array().nullish(),
 });
 
-type teste = z.infer<typeof advertSchema>;
+// type teste = z.infer<typeof advertSchema>;
 
 export const advertSchemaRequest = advertSchema.omit({
   id: true,
