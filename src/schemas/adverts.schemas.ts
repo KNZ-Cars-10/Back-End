@@ -14,7 +14,10 @@ export const advertSchema = z.object({
   cover_image: z.string().nullable(),
   first_image: z.string().nullable(),
   second_image: z.string().nullable(),
+  other_images: z.string().array().nullish(),
 });
+
+type teste = z.infer<typeof advertSchema>;
 
 export const advertSchemaRequest = advertSchema.omit({
   id: true,

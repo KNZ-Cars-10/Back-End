@@ -42,6 +42,9 @@ class Advert {
   @Column({ type: "varchar", nullable: true })
   second_image: string | null;
 
+  @Column({ type: "json", nullable: true })
+  other_images: string[] | null | undefined;
+
   @ManyToOne(() => User, (user) => user.adverts, { onDelete: "CASCADE" })
   user: User;
 }
