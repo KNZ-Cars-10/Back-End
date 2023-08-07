@@ -6,7 +6,7 @@ import {
   listAllAdvertsController,
   updateAdvertbyIdController,
 } from "../controllers/adverts.controllers";
-import ensureTokenExistis from "../middlewares/ensuretokenexistis.middleware";
+import ensureTokenExistis from "../middlewares/ensureTokenExistis.middleware";
 import checkRequestBody from "../middlewares/checkRequestBody.middleware";
 import {
   advertSchemaRequest,
