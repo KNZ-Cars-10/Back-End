@@ -1,15 +1,11 @@
 import { Repository } from "typeorm";
 import { AppDataSource } from "../../data-source";
 import {
-  TAdvert,
   TAdvertRequest,
   TAdvertResponse,
 } from "../../interfaces/adverts.interfaces";
 import Advert from "../../entities/adverts.entities";
-import {
-  advertSchema,
-  advertSchemaResponse,
-} from "../../schemas/adverts.schemas";
+import { advertSchemaResponse } from "../../schemas/adverts.schemas";
 
 const updateAdvertService = async (
   advertId: number,
@@ -35,12 +31,10 @@ const updateAdvertService = async (
 
   await advertRepository.save(newAdvertData);
 
-  //   Tem que Resolve
+  const returnAdvert: TAdvertResponse =
+    advertSchemaResponse.parse(newAdvertData);
 
-  //   const returnAdvert: TAdvertResponse =
-  //     advertSchemaResponse.parse(newAdvertData);
-
-  return newAdvertData;
+  return returnAdvert;
 };
 
 export default updateAdvertService;

@@ -14,9 +14,7 @@ import { AppError } from "../../error";
 const createAdvertService = async (
   contactData: TAdvertRequest,
   userId: number
-
-  // Tem que resolve
-): Promise<any> => {
+): Promise<TAdvertResponse> => {
   const userRepository: Repository<User> = AppDataSource.getRepository(User);
 
   const user: User | null = await userRepository.findOne({
@@ -43,13 +41,9 @@ const createAdvertService = async (
 
   await advertRepository.save(advert);
 
-  console.log(advert);
+  const returnAdvert: TAdvertResponse = advertSchemaResponse.parse(advert);
 
-  // Tem que resolve
-
-  // const returnAdvert = advertSchemaResponse.parse(advert);
-
-  return advert;
+  return returnAdvert;
 };
 
 export default createAdvertService;

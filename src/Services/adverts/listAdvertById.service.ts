@@ -2,15 +2,11 @@ import { Repository } from "typeorm";
 import { AppDataSource } from "../../data-source";
 import { TAdvertResponse } from "../../interfaces/adverts.interfaces";
 import Advert from "../../entities/adverts.entities";
-import {
-  advertSchema,
-  advertSchemaResponse,
-} from "../../schemas/adverts.schemas";
+import { advertSchemaResponse } from "../../schemas/adverts.schemas";
 
 const listAdvertByIdService = async (
   advertId: number
-): //   Tem que Resolve
-Promise<any> => {
+): Promise<TAdvertResponse> => {
   const advertRepository: Repository<Advert> =
     AppDataSource.getRepository(Advert);
 
@@ -24,13 +20,9 @@ Promise<any> => {
     },
   });
 
-  console.log(advert);
+  const returnAdvert: TAdvertResponse = advertSchemaResponse.parse(advert);
 
-  //   Tem que Resolve
-
-  //   const returnAdvert: TAdvertResponse = advertSchemaResponse.parse(advert);
-
-  return advert;
+  return returnAdvert;
 };
 
 export default listAdvertByIdService;

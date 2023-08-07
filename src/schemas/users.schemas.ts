@@ -13,7 +13,7 @@ export const userSchema = z.object({
   state: z.string(),
   city: z.string(),
   street: z.string(),
-  number: z.string(),
+  number: z.number(),
   complement: z.string().nullable(),
   is_advertise: z.boolean(),
 });
@@ -24,8 +24,12 @@ export const userSchemaRegister = userSchema
     createdAt: true,
   })
   .extend({
-    password: z.string(),
+    password: z.string().min(8, "A senha deve ter no mínimo 8 caracteres."),
     confirm_password: z.string(),
+  })
+  .refine((data) => data.password === data.confirm_password, {
+    message: "Passwords don't match",
+    path: ["confirm_password"],
   });
 
 export const userSchemaRequest = userSchema.omit({
@@ -37,9 +41,9 @@ export const userSchemaResponse = userSchema.extend({
   adverts: z.optional(advertSchema).array(),
 });
 
-export const updateUserSchema = userSchemaRegister
-  .omit({
-    confirm_password: true,
+export const updateUserSchema = userSchema
+  .extend({
+    password: z.string().min(8, "A senha deve ter no mínimo 8 caracteres."),
   })
   .partial();
 

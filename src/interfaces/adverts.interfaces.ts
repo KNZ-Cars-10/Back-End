@@ -7,6 +7,15 @@ import {
   updateAdvertSchema,
 } from "../schemas/adverts.schemas";
 
+export type TPaginationAdvert = {
+  prevPage: string | null;
+  nextPage: string | null;
+  pages: number;
+  page: number;
+  count: number;
+  data: TAdvertResponse[];
+};
+
 export type TAdvert = z.infer<typeof advertSchema>;
 
 export type TAdvertResponse = z.infer<typeof advertSchemaResponse>;

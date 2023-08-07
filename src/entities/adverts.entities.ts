@@ -1,10 +1,4 @@
-import {
-  Entity,
-  Column,
-  PrimaryGeneratedColumn,
-  CreateDateColumn,
-  ManyToOne,
-} from "typeorm";
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from "typeorm";
 import User from "./users.entities";
 
 @Entity("adverts")
@@ -18,23 +12,23 @@ class Advert {
   @Column({ type: "varchar" })
   model: string;
 
-  @Column({ type: "varchar" })
-  year: string;
+  @Column({ type: "int" })
+  year: number;
 
   @Column({ type: "varchar" })
   fuel: string;
 
-  @Column({ type: "varchar" })
-  mileage: string;
+  @Column({ type: "int" })
+  mileage: number;
 
   @Column({ type: "varchar" })
   color: string;
 
-  @Column({ type: "varchar" })
-  price_FIPE: string;
+  @Column({ type: "int" })
+  price_FIPE: number;
 
-  @Column({ type: "varchar" })
-  price: string;
+  @Column({ type: "int" })
+  price: number;
 
   @Column({ type: "varchar" })
   description: string;
@@ -47,6 +41,9 @@ class Advert {
 
   @Column({ type: "varchar", nullable: true })
   second_image: string | null;
+
+  @Column({ type: "json", nullable: true })
+  other_images: string[] | null | undefined;
 
   @ManyToOne(() => User, (user) => user.adverts, { onDelete: "CASCADE" })
   user: User;

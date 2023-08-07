@@ -10,10 +10,6 @@ const checkOwnerAdvert = async (
   const advertUser: TUser = res.locals.advertUser;
   const sub: number = res.locals.sub;
 
-  console.log(advertUser);
-
-  console.log(sub);
-
   if (sub != advertUser.id) {
     throw new AppError("Insufficient permission", 403);
   }
