@@ -1,10 +1,12 @@
 import { Repository } from "typeorm";
 import { AppDataSource } from "../../data-source";
 import User from "../../entities/users.entities";
-import { TUser, TUserRegister } from "../../interfaces/users.interfaces";
+import { TUser, TUserRegisterService } from "../../interfaces/users.interfaces";
 import { userSchema } from "../../schemas/users.schemas";
 
-const createUserService = async (userData: TUserRegister): Promise<TUser> => {
+const createUserService = async (
+  userData: TUserRegisterService
+): Promise<TUser> => {
   const userRepository: Repository<User> = AppDataSource.getRepository(User);
 
   const user: User = userRepository.create(userData);

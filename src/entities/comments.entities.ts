@@ -1,0 +1,29 @@
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from "typeorm";
+import Advert from "./adverts.entities";
+import User from "./users.entities";
+
+@Entity("comments")
+class Comment {
+  @PrimaryGeneratedColumn("increment")
+  id: number;
+
+  @Column({ type: "varchar" })
+  text: string;
+
+  @CreateDateColumn({ type: "varchar" })
+  createdAt: string;
+
+  @ManyToOne(() => Advert, (advert) => advert.comments)
+  advert: Advert;
+
+  @ManyToOne(() => User, (user) => user.comments)
+  user: User;
+}
+
+export default Comment;

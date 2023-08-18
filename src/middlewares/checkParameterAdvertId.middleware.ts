@@ -9,14 +9,14 @@ const checkParameterAdvertId = async (
   res: Response,
   next: NextFunction
 ): Promise<Response | void> => {
-  const AdvertId = parseInt(req.params.id);
+  const advertId = parseInt(req.params.advertId);
 
   const advertRepository: Repository<Advert> =
     AppDataSource.getRepository(Advert);
 
   const advert: Advert | null = await advertRepository.findOne({
     where: {
-      id: AdvertId,
+      id: advertId,
     },
 
     relations: {
