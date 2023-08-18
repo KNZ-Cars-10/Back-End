@@ -1,5 +1,6 @@
 import { Router } from "express";
 import {
+  checkUserEmailController,
   createUserController,
   deleteUserController,
   listAllUserController,
@@ -57,5 +58,7 @@ usersRoutes.delete(
   checkOwnerUser,
   deleteUserController
 );
+
+usersRoutes.get("/checkEmail/:email", checkUserEmailController);
 
 export default usersRoutes;

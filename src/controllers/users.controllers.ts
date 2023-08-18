@@ -14,6 +14,7 @@ import { userSchemaServiceRegister } from "../schemas/users.schemas";
 import cloudinary from "../cloudinaryConfig";
 
 import datauriparser from "datauri/parser";
+import checkUserEmailService from "../Services/users/checkUserEmail.service";
 
 export const createUserController = async (
   req: Request,
@@ -109,4 +110,15 @@ export const listUserbyIdController = async (
   const user: TUser | null = await listUserByIdService(userId);
 
   return res.json(user);
+};
+
+export const checkUserEmailController = async (
+  req: Request,
+  res: Response
+): Promise<Response> => {
+  console.log("entrou");
+  const email = req.params.email;
+  const userExist: boolean = await checkUserEmailService(email);
+
+  return res.json({ exists: userExist });
 };
