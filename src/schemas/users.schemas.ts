@@ -13,15 +13,30 @@ export const userSchema = z.object({
   state: z.string(),
   city: z.string(),
   street: z.string(),
-  number: z.number(),
+  number: z.string(),
   complement: z.string().nullable(),
-  is_advertise: z.boolean(),
+  is_advertiser: z.boolean(),
+  createdAt: z.string(),
+  color: z.string(),
+  avatar: z.string().nullable(),
+  inicial: z.string(),
 });
+
+export const userSchemaServiceRegister = userSchema
+  .omit({
+    id: true,
+    createdAt: true,
+  })
+  .extend({
+    password: z.string().min(8, "A senha deve ter no mínimo 8 caracteres."),
+  });
 
 export const userSchemaRegister = userSchema
   .omit({
     id: true,
     createdAt: true,
+    avatar: true,
+    inicial: true,
   })
   .extend({
     password: z.string().min(8, "A senha deve ter no mínimo 8 caracteres."),

@@ -5,11 +5,14 @@ import {
   userSchemaRegister,
   userSchemaRequest,
   userSchemaResponse,
+  userSchemaServiceRegister,
 } from "../schemas/users.schemas";
 
 export type TUser = z.infer<typeof userSchema>;
 
 export type TUserRegister = z.infer<typeof userSchemaRegister>;
+
+export type TUserRegisterService = z.infer<typeof userSchemaServiceRegister>;
 
 export type TUserRequest = z.infer<typeof userSchemaRequest>;
 

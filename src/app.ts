@@ -6,6 +6,8 @@ import cors from "cors";
 import usersRoutes from "./routes/users.routes";
 import loginRouter from "./routes/login.routes";
 import advertsRouter from "./routes/adverts.routes";
+import profileRoutes from "./routes/profile.routes";
+import commentRoutes from "./routes/comments.routes";
 
 const app: Application = express();
 
@@ -20,6 +22,10 @@ app.use("/users", usersRoutes);
 app.use("/login", loginRouter);
 
 app.use("/adverts", advertsRouter);
+
+app.use("/profile", profileRoutes);
+
+app.use("/comment", commentRoutes);
 
 app.use(handleErrors);
 

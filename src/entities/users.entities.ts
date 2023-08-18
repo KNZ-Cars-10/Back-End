@@ -5,10 +5,12 @@ import {
   BeforeInsert,
   BeforeUpdate,
   OneToMany,
+  CreateDateColumn,
 } from "typeorm";
 
 import { getRounds, hashSync } from "bcryptjs";
 import Advert from "./adverts.entities";
+import Comment from "./comments.entities";
 
 @Entity("users")
 class User {
@@ -17,6 +19,9 @@ class User {
 
   @Column({ type: "varchar" })
   name: string;
+
+  @Column({ type: "varchar" })
+  inicial: string;
 
   @Column({ type: "varchar", unique: true })
   email: string;
@@ -45,23 +50,32 @@ class User {
   @Column({ type: "varchar" })
   street: string;
 
-  @Column({ type: "int" })
-  number: number;
+  @Column({ type: "varchar" })
+  number: string;
 
   @Column({ type: "varchar", nullable: true })
   complement: string | null;
 
   @Column()
-  is_advertise: boolean;
+  is_advertiser: boolean;
 
   @Column({ type: "varchar" })
   password: string;
 
   @Column({ type: "varchar" })
-  confirm_password: string;
+  color: string;
+
+  @CreateDateColumn({ type: "varchar" })
+  createdAt: string;
+
+  @Column({ type: "varchar", nullable: true })
+  avatar: string | null;
 
   @OneToMany(() => Advert, (advert) => advert.user, { nullable: true })
   adverts: Advert[] | null | undefined;
+
+  @OneToMany(() => Comment, (comment) => comment.user, { nullable: true })
+  comments: Comment[] | null | undefined;
 
   @BeforeInsert()
   @BeforeUpdate()

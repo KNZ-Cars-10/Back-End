@@ -2,6 +2,7 @@ import { Router } from "express";
 import {
   createAdvertController,
   deleteAdvertController,
+  generateURLImage,
   listAdvertbyIdController,
   listAllAdvertsController,
   updateAdvertbyIdController,
@@ -14,8 +15,12 @@ import {
 } from "../schemas/adverts.schemas";
 import checkParameterAdvertId from "../middlewares/checkParameterAdvertId.middleware";
 import checkOwnerAdvert from "../middlewares/checkOwnerAdvert.middleware";
+import multer from "multer";
 
 const advertsRouter = Router();
+
+const storage = multer.memoryStorage();
+const upload = multer({ storage });
 
 advertsRouter.post(
   "",
@@ -26,10 +31,14 @@ advertsRouter.post(
 
 advertsRouter.get("", listAllAdvertsController);
 
-advertsRouter.get("/:id", checkParameterAdvertId, listAdvertbyIdController);
+advertsRouter.get(
+  "/:advertId",
+  checkParameterAdvertId,
+  listAdvertbyIdController
+);
 
 advertsRouter.patch(
-  "/:id",
+  "/:advertId",
   ensureTokenExistis,
   checkParameterAdvertId,
   checkRequestBody(updateAdvertSchema),
@@ -38,11 +47,19 @@ advertsRouter.patch(
 );
 
 advertsRouter.delete(
-  "/:id",
+  "/:advertId",
   ensureTokenExistis,
   checkParameterAdvertId,
   checkOwnerAdvert,
   deleteAdvertController
+);
+
+advertsRouter.post(
+  "/cover",
+  upload.single("image"),
+  // checkRequestBody(advertSchemaRequest),
+  // ensureTokenExistis,
+  generateURLImage
 );
 
 export default advertsRouter;

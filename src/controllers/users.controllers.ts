@@ -7,17 +7,39 @@ import updateUserService from "../Services/users/updateUsers.service";
 import {
   TUser,
   TUserRegister,
+  TUserRegisterService,
   TUserRequest,
   TUserResponse,
 } from "../interfaces/users.interfaces";
+import { userSchemaServiceRegister } from "../schemas/users.schemas";
+import multer from "multer";
+import cloudinary from "../cloudinaryConfig";
+import { UploadApiResponse } from "cloudinary";
+
+import datauriparser from "datauri/parser";
 
 export const createUserController = async (
   req: Request,
   res: Response
-): Promise<Response> => {
-  const userData: TUserRegister = req.body;
+  //tem que resolve
+): Promise<any> => {
+  const words: string[] = req.body.name.split(" ");
 
-  const createdUser = await createUserService(userData);
+  const initials = words
+    .map((word) => word.charAt(0).toUpperCase())
+    .slice(0, 2)
+    .join("");
+
+  let userData: TUserRegisterService = {
+    ...req.body,
+    avatar: null,
+    inicial: initials,
+  };
+
+  const newUserData: TUserRegisterService =
+    userSchemaServiceRegister.parse(userData);
+
+  const createdUser = await createUserService(newUserData);
 
   return res.status(201).json(createdUser);
 };
@@ -34,8 +56,35 @@ export const updateUserController = async (
   req: Request,
   res: Response
 ): Promise<Response> => {
-  const userId: number = parseInt(req.params.id);
-  const userDatarequest: TUserRequest = req.body;
+  const userId: number = parseInt(req.params.userId);
+  const userDataRequest: TUserRequest = req.body;
+
+  const updatedUser: string | TUser = await updateUserService(
+    userId,
+    userDataRequest
+  );
+
+  return res.json(updatedUser);
+};
+
+export const updateAvatarUserController = async (
+  req: Request,
+  res: Response
+): Promise<Response> => {
+  const userId: number = parseInt(req.params.userId);
+  let userDatarequest = req.body;
+
+  const parse = new datauriparser();
+
+  if (req.file) {
+    const result = await cloudinary.uploader.upload(
+      String(parse.format("image", req.file!.buffer).content)
+    );
+    if (result) {
+      console.log(result);
+      userDatarequest = { avatar: result.secure_url };
+    }
+  }
 
   const updatedUser: string | TUser = await updateUserService(
     userId,
@@ -49,7 +98,7 @@ export const deleteUserController = async (
   req: Request,
   res: Response
 ): Promise<Response> => {
-  const userId: number = parseInt(req.params.id);
+  const userId: number = parseInt(req.params.userId);
 
   await deleteUserService(userId);
 
@@ -60,7 +109,7 @@ export const listUserbyIdController = async (
   req: Request,
   res: Response
 ): Promise<Response> => {
-  const userId = parseInt(req.params.id);
+  const userId = parseInt(req.params.userId);
 
   const user: TUser | null = await listUserByIdService(userId);
 

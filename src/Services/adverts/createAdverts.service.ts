@@ -43,6 +43,13 @@ const createAdvertService = async (
 
   const returnAdvert: TAdvertResponse = advertSchemaResponse.parse(advert);
 
+  const newUserData = userRepository.create({
+    ...user,
+    is_advertiser: true,
+  });
+
+  await userRepository.save(newUserData);
+
   return returnAdvert;
 };
 

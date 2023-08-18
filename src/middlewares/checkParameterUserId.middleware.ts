@@ -9,7 +9,13 @@ const checkParameterUserId = async (
   res: Response,
   next: NextFunction
 ): Promise<Response | void> => {
-  const userId = parseInt(req.params.id);
+  let userId = parseInt(req.params.userId);
+
+  if (!userId) {
+    userId = res.locals.sub;
+  }
+
+  // console.log("id do usuario", userId);
 
   const userRepository: Repository<User> = AppDataSource.getRepository(User);
 
