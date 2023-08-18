@@ -14,8 +14,6 @@ const checkParameterAdvertId = async (
   const advertRepository: Repository<Advert> =
     AppDataSource.getRepository(Advert);
 
-  // console.log("Id do anuncio", advertId);
-
   const advert: Advert | null = await advertRepository.findOne({
     where: {
       id: advertId,

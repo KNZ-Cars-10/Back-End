@@ -12,8 +12,6 @@ export const advertSchema = z.object({
   price: z.string(),
   description: z.string(),
   cover_image: z.string().nullable(),
-  first_image: z.string().nullish(),
-  second_image: z.string().nullish(),
   other_images: z.string().array().nullish(),
   createdAt: z.string(),
   status: z.boolean(),

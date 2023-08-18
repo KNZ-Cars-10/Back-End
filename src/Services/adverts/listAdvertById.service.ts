@@ -2,10 +2,7 @@ import { Repository } from "typeorm";
 import { AppDataSource } from "../../data-source";
 import { TAdvertResponse } from "../../interfaces/adverts.interfaces";
 import Advert from "../../entities/adverts.entities";
-import {
-  advertSchemaResponse,
-  advertSchemaResponseFull,
-} from "../../schemas/adverts.schemas";
+import { advertSchemaResponseFull } from "../../schemas/adverts.schemas";
 
 const listAdvertByIdService = async (
   advertId: number
@@ -25,8 +22,6 @@ const listAdvertByIdService = async (
       },
     },
   });
-
-  console.log(advert);
 
   const returnAdvert: TAdvertResponse = advertSchemaResponseFull.parse(advert);
 

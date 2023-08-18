@@ -31,8 +31,6 @@ const deleteAdvertService = async (advertId: number): Promise<void> => {
     },
   });
 
-  console.log(user?.adverts?.length);
-
   if (user?.adverts?.length! <= 1) {
     const newUserData = userRepository.create({
       ...user,

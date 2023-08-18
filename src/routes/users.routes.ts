@@ -47,7 +47,6 @@ usersRoutes.patch(
   ensureTokenExistis,
   checkParameterUserId,
   checkOwnerUser,
-  // checkRequestBody(updateUserSchema),
   updateAvatarUserController
 );
 

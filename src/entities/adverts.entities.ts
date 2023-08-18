@@ -44,12 +44,6 @@ class Advert {
   @Column({ type: "varchar", nullable: true })
   cover_image: string | null;
 
-  @Column({ type: "varchar", nullable: true })
-  first_image: string | null | undefined;
-
-  @Column({ type: "varchar", nullable: true })
-  second_image: string | null | undefined;
-
   @Column()
   status: boolean;
 

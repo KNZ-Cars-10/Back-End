@@ -15,8 +15,6 @@ const checkParameterUserId = async (
     userId = res.locals.sub;
   }
 
-  // console.log("id do usuario", userId);
-
   const userRepository: Repository<User> = AppDataSource.getRepository(User);
 
   const user: User | null = await userRepository.findOne({

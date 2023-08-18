@@ -9,8 +9,6 @@ const createUserService = async (
 ): Promise<TUser> => {
   const userRepository: Repository<User> = AppDataSource.getRepository(User);
 
-  console.log(userData);
-
   const user: User = userRepository.create(userData);
 
   await userRepository.save(user);

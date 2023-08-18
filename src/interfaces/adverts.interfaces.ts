@@ -4,7 +4,6 @@ import {
   advertSchemaRequest,
   advertSchemaResponse,
   advertSchemaResponseFull,
-  advertsSchema,
   advertsSchemaResponse,
   updateAdvertSchema,
 } from "../schemas/adverts.schemas";

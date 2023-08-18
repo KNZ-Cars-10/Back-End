@@ -102,10 +102,6 @@ export const generateURLImage = async (
 ): Promise<Response> => {
   const parse = new datauriparser();
 
-  // const url = URL.createObjectURL(req.file?.path);
-
-  console.log(req.file!.buffer);
-
   const result = await cloudinary.uploader.upload(
     String(parse.format("image", req.file!.buffer).content)
   );

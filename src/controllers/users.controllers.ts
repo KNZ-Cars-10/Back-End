@@ -6,23 +6,19 @@ import listUserByIdService from "../Services/users/listUserById.service";
 import updateUserService from "../Services/users/updateUsers.service";
 import {
   TUser,
-  TUserRegister,
   TUserRegisterService,
   TUserRequest,
   TUserResponse,
 } from "../interfaces/users.interfaces";
 import { userSchemaServiceRegister } from "../schemas/users.schemas";
-import multer from "multer";
 import cloudinary from "../cloudinaryConfig";
-import { UploadApiResponse } from "cloudinary";
 
 import datauriparser from "datauri/parser";
 
 export const createUserController = async (
   req: Request,
   res: Response
-  //tem que resolve
-): Promise<any> => {
+): Promise<Response> => {
   const words: string[] = req.body.name.split(" ");
 
   const initials = words
@@ -39,7 +35,7 @@ export const createUserController = async (
   const newUserData: TUserRegisterService =
     userSchemaServiceRegister.parse(userData);
 
-  const createdUser = await createUserService(newUserData);
+  const createdUser: TUser = await createUserService(newUserData);
 
   return res.status(201).json(createdUser);
 };
@@ -81,7 +77,6 @@ export const updateAvatarUserController = async (
       String(parse.format("image", req.file!.buffer).content)
     );
     if (result) {
-      console.log(result);
       userDatarequest = { avatar: result.secure_url };
     }
   }
