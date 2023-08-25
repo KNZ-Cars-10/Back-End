@@ -47,8 +47,8 @@ class Advert {
   @Column()
   status: boolean;
 
-  @Column({ type: "json", nullable: true })
-  other_images: string[] | null | undefined;
+  @Column({ type: "json", default: [] })
+  other_images: string[] | undefined | null;
 
   @CreateDateColumn({ type: "varchar" })
   createdAt: string;

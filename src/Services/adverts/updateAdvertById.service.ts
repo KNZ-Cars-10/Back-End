@@ -15,6 +15,10 @@ const updateAdvertService = async (
     where: {
       id: advertId,
     },
+
+    relations: {
+      user: true,
+    },
   });
 
   const newAdvertData = advertRepository.create({
