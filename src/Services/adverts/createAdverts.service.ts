@@ -12,7 +12,7 @@ import { advertSchemaResponse } from "../../schemas/adverts.schemas";
 import { AppError } from "../../error";
 
 const createAdvertService = async (
-  contactData: TAdvertRequest,
+  advertData: TAdvertRequest,
   userId: number
 ): Promise<TAdvertResponse> => {
   const userRepository: Repository<User> = AppDataSource.getRepository(User);
@@ -30,7 +30,7 @@ const createAdvertService = async (
   const foundUser: TUser = userSchema.parse(user);
 
   const newAdvertData = {
-    ...contactData,
+    ...advertData,
     user: foundUser,
   };
 

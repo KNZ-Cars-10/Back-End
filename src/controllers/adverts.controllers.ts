@@ -17,7 +17,11 @@ export const createAdvertController = async (
   req: Request,
   res: Response
 ): Promise<Response> => {
-  const advertData: TAdvertRequest = { ...req.body, status: true };
+  const advertData: TAdvertRequest = {
+    ...req.body,
+    status: true,
+    other_images: [],
+  };
 
   const userId: number = res.locals.sub;
 
@@ -38,6 +42,16 @@ export const listAllAdvertsController = async (
   let mileage: any = req.query.mileage;
   let price: any = req.query.price;
 
+  if (price) {
+    price = parseInt(price);
+    price = price + 1;
+  }
+
+  if (mileage) {
+    mileage = parseInt(mileage);
+    mileage = mileage + 1;
+  }
+
   if (mileage == null) {
     mileage = "9000000000";
   }
@@ -46,6 +60,7 @@ export const listAllAdvertsController = async (
     price = "9000000000";
   }
 
+  console.log(brand, "mileage", mileage, "price", price);
   const adverts: TPaginationAdvert | null = await listAllAdvertsService(
     brand,
     model,

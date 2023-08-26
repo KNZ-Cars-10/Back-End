@@ -24,8 +24,8 @@ const upload = multer({ storage });
 
 advertsRouter.post(
   "",
-  checkRequestBody(advertSchemaRequest),
   ensureTokenExistis,
+  checkRequestBody(advertSchemaRequest),
   createAdvertController
 );
 

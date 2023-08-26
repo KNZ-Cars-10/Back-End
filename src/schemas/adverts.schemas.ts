@@ -20,6 +20,7 @@ export const advertSchema = z.object({
 export const advertSchemaRequest = advertSchema.omit({
   id: true,
   createdAt: true,
+  // other_images: true,
 });
 
 export const advertSchemaResponse = advertSchema.extend({

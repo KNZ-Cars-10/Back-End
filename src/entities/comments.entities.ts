@@ -19,10 +19,10 @@ class Comment {
   @CreateDateColumn({ type: "varchar" })
   createdAt: string;
 
-  @ManyToOne(() => Advert, (advert) => advert.comments)
+  @ManyToOne(() => Advert, (advert) => advert.comments, { onDelete: "CASCADE" })
   advert: Advert;
 
-  @ManyToOne(() => User, (user) => user.comments)
+  @ManyToOne(() => User, (user) => user.comments, { onDelete: "CASCADE" })
   user: User;
 }
 
