@@ -18,15 +18,4 @@ const checkUserEmailService = async (email: string): Promise<boolean> => {
   return userExist;
 };
 
-// const { email } = emailCheckSchema.parse(req.params);
-
-// const userRepository = getConnection().getRepository(User);
-// const user = await userRepository.findOne({ email });
-
-// if (user) {
-//   res.json({ exists: true });
-// } else {
-//   res.json({ exists: false });
-// }
-
 export default checkUserEmailService;

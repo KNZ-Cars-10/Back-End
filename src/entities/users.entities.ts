@@ -71,6 +71,9 @@ class User {
   @Column({ type: "varchar", nullable: true })
   avatar: string | null;
 
+  @Column({ type: "varchar", nullable: true })
+  resetToken: string | null;
+
   @OneToMany(() => Advert, (advert) => advert.user, { nullable: true })
   adverts: Advert[] | null | undefined;
 

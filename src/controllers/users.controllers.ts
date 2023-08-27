@@ -116,7 +116,6 @@ export const checkUserEmailController = async (
   req: Request,
   res: Response
 ): Promise<Response> => {
-  console.log("entrou");
   const email = req.params.email;
   const userExist: boolean = await checkUserEmailService(email);
 
