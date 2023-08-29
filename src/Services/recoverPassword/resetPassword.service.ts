@@ -18,7 +18,7 @@ const resetPasswordService = async (token: string, newPassword: string) => {
     });
 
     if (!user) {
-      throw new Error("Usuário não encontrado.");
+      throw new AppError("Usuário não encontrado.", 404);
     }
 
     user.password = newPassword;
