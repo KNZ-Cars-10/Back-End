@@ -4,6 +4,7 @@ import { AppDataSource } from "../../data-source";
 import { transporter } from "../../app";
 import jwt from "jsonwebtoken";
 import { v4 as uuidv4 } from "uuid";
+import { AppError } from "../../error";
 
 const resetTokenService = async (email: string) => {
   const userRepository: Repository<User> = AppDataSource.getRepository(User);
@@ -13,7 +14,7 @@ const resetTokenService = async (email: string) => {
   });
 
   if (!user) {
-    return false;
+    throw new AppError("Usuário não encontrado.", 404);
   }
 
   const resetToken = jwt.sign(
