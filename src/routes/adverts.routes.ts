@@ -7,7 +7,6 @@ import {
   listAllAdvertsController,
   updateAdvertbyIdController,
 } from "../controllers/adverts.controllers";
-import ensureTokenExistis from "../middlewares/ensureTokenExistis.middleware";
 import checkRequestBody from "../middlewares/checkRequestBody.middleware";
 import {
   advertSchemaRequest,
@@ -16,6 +15,7 @@ import {
 import checkParameterAdvertId from "../middlewares/checkParameterAdvertId.middleware";
 import checkOwnerAdvert from "../middlewares/checkOwnerAdvert.middleware";
 import multer from "multer";
+import ensureTokenExistis from "../middlewares/ensureTokenExistis.middleware";
 
 const advertsRouter = Router();
 

@@ -1,5 +1,4 @@
 import { Router } from "express";
-import ensureTokenExistis from "../middlewares/ensureTokenExistis.middleware";
 import checkParameterUserId from "../middlewares/checkParameterUserId.middleware";
 import checkRequestBody from "../middlewares/checkRequestBody.middleware";
 import checkParameterCommentId from "../middlewares/checkParameterCommentId.middleware";
@@ -16,6 +15,7 @@ import {
 } from "../schemas/comments.schemas";
 import checkParameterAdvertId from "../middlewares/checkParameterAdvertId.middleware";
 import checkOwnerComment from "../middlewares/checkOwnerComment.middleware";
+import ensureTokenExistis from "../middlewares/ensureTokenExistis.middleware";
 
 const commentRoutes: Router = Router();
 

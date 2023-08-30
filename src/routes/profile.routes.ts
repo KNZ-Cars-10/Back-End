@@ -1,6 +1,4 @@
 import { Router } from "express";
-
-import ensureTokenExistis from "../middlewares/ensureTokenExistis.middleware";
 import checkParameterUserId from "../middlewares/checkParameterUserId.middleware";
 import {
   deleteProfileController,
@@ -10,6 +8,7 @@ import {
 import checkRequestBody from "../middlewares/checkRequestBody.middleware";
 import { updateUserSchema } from "../schemas/users.schemas";
 import checkEmailUser from "../middlewares/checkEmailUser.middleware";
+import ensureTokenExistis from "../middlewares/ensureTokenExistis.middleware";
 
 const profileRoutes: Router = Router();
 

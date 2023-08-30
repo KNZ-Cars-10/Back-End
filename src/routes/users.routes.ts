@@ -10,9 +10,9 @@ import {
 import checkRequestBody from "../middlewares/checkRequestBody.middleware";
 import { updateUserSchema, userSchemaRegister } from "../schemas/users.schemas";
 import checkEmailUser from "../middlewares/checkEmailUser.middleware";
-import ensureTokenExistis from "../middlewares/ensureTokenExistis.middleware";
 import checkParameterUserId from "../middlewares/checkParameterUserId.middleware";
 import checkOwnerUser from "../middlewares/checkOwnerUser.middleware";
+import ensureTokenExistis from "../middlewares/ensureTokenExistis.middleware";
 
 const usersRoutes: Router = Router();
 
