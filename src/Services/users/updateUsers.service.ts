@@ -14,10 +14,21 @@ const updateUserService = async (
     id: userId,
   });
 
-  const newUserData = userRepository.create({
+  let newUserData = userRepository.create({
     ...oldUserData,
     ...userData,
   });
+
+  if (userData.name) {
+    const words: string[] = userData.name.split(" ");
+
+    const initials = words
+      .map((word) => word.charAt(0).toUpperCase())
+      .slice(0, 2)
+      .join("");
+
+    newUserData.inicial = initials;
+  }
 
   await userRepository.save(newUserData);
 

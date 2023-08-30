@@ -2,9 +2,8 @@ import { LessThan, Repository } from "typeorm";
 import { AppDataSource } from "../../data-source";
 import Advert from "../../entities/adverts.entities";
 import {
-  TAdvertResponse,
   TAdverts,
-  TPaginationAdvert,
+  TAdvertsResponse,
 } from "../../interfaces/adverts.interfaces";
 import { advertsSchemaResponse } from "../../schemas/adverts.schemas";
 
@@ -16,7 +15,7 @@ const listAllAdvertsService = async (
   mileage: any,
   color: any,
   price: any
-): Promise<any | null> => {
+): Promise<TAdvertsResponse | null> => {
   const advertRepository: Repository<Advert> =
     AppDataSource.getRepository(Advert);
 

@@ -54,6 +54,11 @@ advertsRouter.delete(
   deleteAdvertController
 );
 
-advertsRouter.post("/cover", upload.single("image"), generateURLImage);
+advertsRouter.post(
+  "/cover",
+  upload.single("image"),
+  ensureTokenExistis,
+  generateURLImage
+);
 
 export default advertsRouter;

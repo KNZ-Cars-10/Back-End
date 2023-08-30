@@ -4,7 +4,7 @@ import {
   TAdvert,
   TAdvertRequest,
   TAdvertResponse,
-  TPaginationAdvert,
+  TAdvertsResponse,
 } from "../interfaces/adverts.interfaces";
 import listAllAdvertsService from "../Services/adverts/listAdverts.service";
 import listAdvertByIdService from "../Services/adverts/listAdvertById.service";
@@ -19,7 +19,6 @@ export const createAdvertController = async (
 ): Promise<Response> => {
   const advertData: TAdvertRequest = {
     ...req.body,
-    status: true,
     other_images: [],
   };
 
@@ -60,8 +59,7 @@ export const listAllAdvertsController = async (
     price = "9000000000";
   }
 
-  console.log(brand, "mileage", mileage, "price", price);
-  const adverts: TPaginationAdvert | null = await listAllAdvertsService(
+  const adverts: TAdvertsResponse | null = await listAllAdvertsService(
     brand,
     model,
     year,

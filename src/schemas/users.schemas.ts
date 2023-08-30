@@ -29,6 +29,7 @@ export const userSchemaServiceRegister = userSchema
   })
   .extend({
     password: z.string().min(8, "A senha deve ter no mínimo 8 caracteres."),
+    resetToken: z.string().nullable(),
   });
 
 export const userSchemaRegister = userSchema
@@ -57,6 +58,12 @@ export const userSchemaResponse = userSchema.extend({
 });
 
 export const updateUserSchema = userSchema
+  .omit({
+    color: true,
+    id: true,
+    createdAt: true,
+    inicial: true,
+  })
   .extend({
     password: z.string().min(8, "A senha deve ter no mínimo 8 caracteres."),
   })

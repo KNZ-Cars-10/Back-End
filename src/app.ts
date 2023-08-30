@@ -41,6 +41,8 @@ app.use("/comment", commentRoutes);
 
 app.use("/recover-password", recoverPasswordRouter);
 
+app.use(express.static("documentation"));
+
 app.use(handleErrors);
 
 export { app, transporter };

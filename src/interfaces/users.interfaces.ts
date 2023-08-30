@@ -19,3 +19,9 @@ export type TUserRequest = z.infer<typeof userSchemaRequest>;
 export type TUserResponse = z.infer<typeof userSchemaResponse>;
 
 export type TUserUpdate = z.infer<typeof updateUserSchema>;
+
+// export type TEmailRequest = {
+//   to: string;
+//   subject: string;
+//   text: string;
+// };

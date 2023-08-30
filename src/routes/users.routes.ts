@@ -5,7 +5,6 @@ import {
   deleteUserController,
   listAllUserController,
   listUserbyIdController,
-  updateAvatarUserController,
   updateUserController,
 } from "../controllers/users.controllers";
 import checkRequestBody from "../middlewares/checkRequestBody.middleware";
@@ -14,12 +13,8 @@ import checkEmailUser from "../middlewares/checkEmailUser.middleware";
 import ensureTokenExistis from "../middlewares/ensureTokenExistis.middleware";
 import checkParameterUserId from "../middlewares/checkParameterUserId.middleware";
 import checkOwnerUser from "../middlewares/checkOwnerUser.middleware";
-import multer from "multer";
 
 const usersRoutes: Router = Router();
-
-const storage = multer.memoryStorage();
-const upload = multer({ storage });
 
 usersRoutes.post(
   "",
@@ -28,7 +23,7 @@ usersRoutes.post(
   createUserController
 );
 
-usersRoutes.get("", ensureTokenExistis, listAllUserController);
+usersRoutes.get("", listAllUserController);
 
 usersRoutes.get("/:userId", checkParameterUserId, listUserbyIdController);
 
@@ -40,15 +35,6 @@ usersRoutes.patch(
   checkOwnerUser,
   checkRequestBody(updateUserSchema),
   updateUserController
-);
-
-usersRoutes.patch(
-  "/avatar/:userId",
-  upload.single("image"),
-  ensureTokenExistis,
-  checkParameterUserId,
-  checkOwnerUser,
-  updateAvatarUserController
 );
 
 usersRoutes.delete(

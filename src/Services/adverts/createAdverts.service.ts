@@ -24,7 +24,7 @@ const createAdvertService = async (
   });
 
   if (!user) {
-    throw new AppError("User not Found", 404);
+    throw new AppError("User not found", 404);
   }
 
   const foundUser: TUser = userSchema.parse(user);

@@ -11,9 +11,6 @@ import {
   TUserResponse,
 } from "../interfaces/users.interfaces";
 import { userSchemaServiceRegister } from "../schemas/users.schemas";
-import cloudinary from "../cloudinaryConfig";
-
-import datauriparser from "datauri/parser";
 import checkUserEmailService from "../Services/users/checkUserEmail.service";
 
 export const createUserController = async (
@@ -30,6 +27,7 @@ export const createUserController = async (
   let userData: TUserRegisterService = {
     ...req.body,
     avatar: null,
+    resetToken: null,
     inicial: initials,
   };
 
@@ -59,32 +57,6 @@ export const updateUserController = async (
   const updatedUser: string | TUser = await updateUserService(
     userId,
     userDataRequest
-  );
-
-  return res.json(updatedUser);
-};
-
-export const updateAvatarUserController = async (
-  req: Request,
-  res: Response
-): Promise<Response> => {
-  const userId: number = parseInt(req.params.userId);
-  let userDatarequest = req.body;
-
-  const parse = new datauriparser();
-
-  if (req.file) {
-    const result = await cloudinary.uploader.upload(
-      String(parse.format("image", req.file!.buffer).content)
-    );
-    if (result) {
-      userDatarequest = { avatar: result.secure_url };
-    }
-  }
-
-  const updatedUser: string | TUser = await updateUserService(
-    userId,
-    userDatarequest
   );
 
   return res.json(updatedUser);

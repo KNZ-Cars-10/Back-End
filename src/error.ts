@@ -12,9 +12,9 @@ class AppError extends Error {
 
 const handleErrors = (
   err: Error,
-  _req: Request,
+  req: Request,
   res: Response,
-  _next: NextFunction
+  next: NextFunction
 ) => {
   if (err instanceof AppError) {
     return res.status(err.statusCode).json({

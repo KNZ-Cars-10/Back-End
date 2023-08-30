@@ -1,11 +1,11 @@
 import { Router } from "express";
 import ensureTokenExistis from "../middlewares/ensureTokenExistis.middleware";
 import checkParameterUserId from "../middlewares/checkParameterUserId.middleware";
-import { deleteProfileController } from "../controllers/profile.controllers";
 import checkRequestBody from "../middlewares/checkRequestBody.middleware";
 import checkParameterCommentId from "../middlewares/checkParameterCommentId.middleware";
 import {
   createCommentController,
+  deleteCommentController,
   listAllCommentsController,
   listCommentbyIdController,
   updateCommentbyIdController,
@@ -28,11 +28,7 @@ commentRoutes.post(
   createCommentController
 );
 
-commentRoutes.get(
-  "",
-
-  listAllCommentsController
-);
+commentRoutes.get("", listAllCommentsController);
 
 commentRoutes.get(
   "/:commentId",
@@ -55,7 +51,7 @@ commentRoutes.delete(
   ensureTokenExistis,
   checkParameterCommentId,
   checkOwnerComment,
-  deleteProfileController
+  deleteCommentController
 );
 
 export default commentRoutes;

@@ -20,7 +20,6 @@ export const advertSchema = z.object({
 export const advertSchemaRequest = advertSchema.omit({
   id: true,
   createdAt: true,
-  // other_images: true,
 });
 
 export const advertSchemaResponse = advertSchema.extend({
@@ -42,6 +41,7 @@ export const advertSchemaResponse = advertSchema.extend({
     createdAt: z.string(),
     color: z.string(),
     inicial: z.string(),
+    avatar: z.string().nullable(),
   }),
 });
 
@@ -64,6 +64,7 @@ export const advertSchemaResponseFull = advertSchema.extend({
     createdAt: z.string(),
     color: z.string(),
     inicial: z.string(),
+    avatar: z.string().nullable(),
   }),
   comments: z
     .object({
@@ -75,6 +76,7 @@ export const advertSchemaResponseFull = advertSchema.extend({
         name: z.string(),
         inicial: z.string(),
         color: z.string(),
+        avatar: z.string().nullish(),
       }),
     })
     .array(),
@@ -100,10 +102,17 @@ export const advertsSchemaResponse = advertSchema
       createdAt: z.string(),
       color: z.string(),
       inicial: z.string(),
+      avatar: z.string().nullable(),
     }),
   })
   .array();
 
-export const updateAdvertSchema = advertSchemaRequest.partial();
+export const updateAdvertSchema = advertSchemaRequest
+  .omit({
+    brand: true,
+    model: true,
+    price_FIPE: true,
+  })
+  .partial();
 
 export const advertsSchema = advertSchemaResponse.array();

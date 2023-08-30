@@ -9,6 +9,7 @@ export const commentSchema = z.object({
     name: z.string(),
     color: z.string(),
     inicial: z.string(),
+    avatar: z.string().nullish(),
   }),
 
   advert: z.object({

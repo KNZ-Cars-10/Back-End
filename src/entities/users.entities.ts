@@ -32,7 +32,7 @@ class User {
   @Column({ type: "varchar" })
   phone: string;
 
-  @Column({ type: "date" })
+  @Column({ type: "varchar" })
   birth_date: string;
 
   @Column({ type: "varchar" })
