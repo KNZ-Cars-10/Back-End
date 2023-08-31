@@ -11,14 +11,6 @@ const settings = () => {
     const entitiesPath = path_1.default.join(__dirname, "./entities/**.{ts,js}");
     const migrationPath = path_1.default.join(__dirname, "./migrations/**.{ts,js}");
     const nodeEnv = process.env.NODE_ENV;
-    // if (nodeEnv === "production") {
-    //   return {
-    //     type: "postgres",
-    //     url: process.env.DATABASE_URL,
-    //     entities: [entitiesPath],
-    //     migrations: [migrationPath],
-    //   };
-    // }
     if (nodeEnv === "test") {
         return {
             type: "sqlite",

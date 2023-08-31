@@ -1,6 +1,5 @@
 import { Repository } from "typeorm";
 import User from "../../entities/users.entities";
-// import jwt from "jsonwebtoken";
 import { AppDataSource } from "../../data-source";
 import { transporter } from "../../app";
 import { AppError } from "../../error";
@@ -17,14 +16,6 @@ const sendTokenService = async (email: string): Promise<string> => {
     throw new AppError("User not found", 404);
   }
   const resetToken = randomUUID();
-
-  // const resetToken = jwt.sign(
-  //   { userId: user.id, random: randomUUID() },
-  //   process.env.SECRET_KEY_RECOVER_PASSWORD!,
-  //   {
-  //     expiresIn: "1h",
-  //   }
-  // );
 
   const newUserData = userRepository.create({
     ...user,

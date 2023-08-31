@@ -1,10 +1,9 @@
 import { Repository } from "typeorm";
 import User from "../../entities/users.entities";
 import { AppDataSource } from "../../data-source";
-// import jwt from "jsonwebtoken";
+
 import { TUser } from "../../interfaces/users.interfaces";
 import { AppError } from "../../error";
-// import { AppError } from "../../error";
 
 const resetPasswordService = async (
   token: string,
@@ -12,15 +11,8 @@ const resetPasswordService = async (
 ): Promise<TUser> => {
   const userRepository: Repository<User> = AppDataSource.getRepository(User);
 
-  // try {
-  // const decodedToken: any = jwt.verify(
-  //   token,
-  //   process.env.SECRET_KEY_RECOVER_PASSWORD!
-  // );
-
   const user: User | null = await userRepository.findOne({
     where: {
-      // id: decodedToken.userId,
       resetToken: token,
     },
   });
@@ -38,17 +30,6 @@ const resetPasswordService = async (
   const returnUser = await userRepository.save(newUserData);
 
   return returnUser;
-
-  // user.password = newPassword;
-  // user.resetToken = null;
-
-  // await userRepository.save(user);
-
-  // return true;
-  // } catch (error) {
-  //   console.error(error);
-  //   throw new AppError("Ocorreu um erro ao redefinir a senha.", 404);
-  // }
 };
 
 export default resetPasswordService;

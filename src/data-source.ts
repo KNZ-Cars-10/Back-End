@@ -7,15 +7,6 @@ const settings = (): DataSourceOptions => {
   const migrationPath: string = path.join(__dirname, "./migrations/**.{ts,js}");
   const nodeEnv: string | undefined = process.env.NODE_ENV;
 
-  // if (nodeEnv === "production") {
-  //   return {
-  //     type: "postgres",
-  //     url: process.env.DATABASE_URL,
-  //     entities: [entitiesPath],
-  //     migrations: [migrationPath],
-  //   };
-  // }
-
   if (nodeEnv === "test") {
     return {
       type: "sqlite",

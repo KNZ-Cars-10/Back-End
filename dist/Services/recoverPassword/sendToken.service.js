@@ -13,7 +13,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const users_entities_1 = __importDefault(require("../../entities/users.entities"));
-// import jwt from "jsonwebtoken";
 const data_source_1 = require("../../data-source");
 const app_1 = require("../../app");
 const error_1 = require("../../error");
@@ -27,13 +26,6 @@ const sendTokenService = (email) => __awaiter(void 0, void 0, void 0, function* 
         throw new error_1.AppError("User not found", 404);
     }
     const resetToken = (0, crypto_1.randomUUID)();
-    // const resetToken = jwt.sign(
-    //   { userId: user.id, random: randomUUID() },
-    //   process.env.SECRET_KEY_RECOVER_PASSWORD!,
-    //   {
-    //     expiresIn: "1h",
-    //   }
-    // );
     const newUserData = userRepository.create(Object.assign(Object.assign({}, user), { resetToken: resetToken }));
     yield userRepository.save(newUserData);
     const recoveryPasswordURL = `${process.env
