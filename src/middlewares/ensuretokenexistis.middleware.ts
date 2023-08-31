@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-// import jwt from "jsonwebtoken";
+import jwt from "jsonwebtoken";
 import { AppError } from "../error";
 
 const ensureTokenExistis = async (
@@ -13,13 +13,13 @@ const ensureTokenExistis = async (
   }
   token = token.split(" ")[1];
 
-  // jwt.verify(token, process.env.SECRET_KEY!, (err: any, decoded: any) => {
-  //   if (err) {
-  //     throw new AppError(err.message, 401);
-  //   }
+  jwt.verify(token, process.env.SECRET_KEY!, (err: any, decoded: any) => {
+    if (err) {
+      throw new AppError(err.message, 401);
+    }
 
-  //   res.locals.sub = decoded.sub;
-  // });
+    res.locals.sub = decoded.sub;
+  });
 
   return next();
 };
