@@ -1,0 +1,21 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const checkParameterUserId_middleware_1 = __importDefault(require("../middlewares/checkParameterUserId.middleware"));
+const checkRequestBody_middleware_1 = __importDefault(require("../middlewares/checkRequestBody.middleware"));
+const checkParameterCommentId_middleware_1 = __importDefault(require("../middlewares/checkParameterCommentId.middleware"));
+const comments_controllers_1 = require("../controllers/comments.controllers");
+const comments_schemas_1 = require("../schemas/comments.schemas");
+const checkParameterAdvertId_middleware_1 = __importDefault(require("../middlewares/checkParameterAdvertId.middleware"));
+const checkOwnerComment_middleware_1 = __importDefault(require("../middlewares/checkOwnerComment.middleware"));
+const ensureTokenExistis_middleware_1 = __importDefault(require("../middlewares/ensureTokenExistis.middleware"));
+const commentRoutes = (0, express_1.Router)();
+commentRoutes.post("/:advertId", ensureTokenExistis_middleware_1.default, checkParameterUserId_middleware_1.default, checkParameterAdvertId_middleware_1.default, (0, checkRequestBody_middleware_1.default)(comments_schemas_1.commentSchemaRquest), comments_controllers_1.createCommentController);
+commentRoutes.get("", comments_controllers_1.listAllCommentsController);
+commentRoutes.get("/:commentId", checkParameterCommentId_middleware_1.default, comments_controllers_1.listCommentbyIdController);
+commentRoutes.patch("/:commentId", ensureTokenExistis_middleware_1.default, checkParameterUserId_middleware_1.default, checkParameterCommentId_middleware_1.default, checkOwnerComment_middleware_1.default, (0, checkRequestBody_middleware_1.default)(comments_schemas_1.commentsSchemaUpdate), comments_controllers_1.updateCommentbyIdController);
+commentRoutes.delete("/:commentId", ensureTokenExistis_middleware_1.default, checkParameterCommentId_middleware_1.default, checkOwnerComment_middleware_1.default, comments_controllers_1.deleteCommentController);
+exports.default = commentRoutes;

@@ -1,0 +1,21 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const users_controllers_1 = require("../controllers/users.controllers");
+const checkRequestBody_middleware_1 = __importDefault(require("../middlewares/checkRequestBody.middleware"));
+const users_schemas_1 = require("../schemas/users.schemas");
+const checkEmailUser_middleware_1 = __importDefault(require("../middlewares/checkEmailUser.middleware"));
+const checkParameterUserId_middleware_1 = __importDefault(require("../middlewares/checkParameterUserId.middleware"));
+const checkOwnerUser_middleware_1 = __importDefault(require("../middlewares/checkOwnerUser.middleware"));
+const ensureTokenExistis_middleware_1 = __importDefault(require("../middlewares/ensureTokenExistis.middleware"));
+const usersRoutes = (0, express_1.Router)();
+usersRoutes.post("", (0, checkRequestBody_middleware_1.default)(users_schemas_1.userSchemaRegister), checkEmailUser_middleware_1.default, users_controllers_1.createUserController);
+usersRoutes.get("", users_controllers_1.listAllUserController);
+usersRoutes.get("/:userId", checkParameterUserId_middleware_1.default, users_controllers_1.listUserbyIdController);
+usersRoutes.patch("/:userId", ensureTokenExistis_middleware_1.default, checkParameterUserId_middleware_1.default, checkEmailUser_middleware_1.default, checkOwnerUser_middleware_1.default, (0, checkRequestBody_middleware_1.default)(users_schemas_1.updateUserSchema), users_controllers_1.updateUserController);
+usersRoutes.delete("/:userId", ensureTokenExistis_middleware_1.default, checkParameterUserId_middleware_1.default, checkOwnerUser_middleware_1.default, users_controllers_1.deleteUserController);
+usersRoutes.get("/checkEmail/:email", users_controllers_1.checkUserEmailController);
+exports.default = usersRoutes;

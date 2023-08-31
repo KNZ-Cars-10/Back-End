@@ -1,0 +1,23 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const adverts_controllers_1 = require("../controllers/adverts.controllers");
+const checkRequestBody_middleware_1 = __importDefault(require("../middlewares/checkRequestBody.middleware"));
+const adverts_schemas_1 = require("../schemas/adverts.schemas");
+const checkParameterAdvertId_middleware_1 = __importDefault(require("../middlewares/checkParameterAdvertId.middleware"));
+const checkOwnerAdvert_middleware_1 = __importDefault(require("../middlewares/checkOwnerAdvert.middleware"));
+const multer_1 = __importDefault(require("multer"));
+const ensureTokenExistis_middleware_1 = __importDefault(require("../middlewares/ensureTokenExistis.middleware"));
+const advertsRouter = (0, express_1.Router)();
+const storage = multer_1.default.memoryStorage();
+const upload = (0, multer_1.default)({ storage });
+advertsRouter.post("", ensureTokenExistis_middleware_1.default, (0, checkRequestBody_middleware_1.default)(adverts_schemas_1.advertSchemaRequest), adverts_controllers_1.createAdvertController);
+advertsRouter.get("", adverts_controllers_1.listAllAdvertsController);
+advertsRouter.get("/:advertId", checkParameterAdvertId_middleware_1.default, adverts_controllers_1.listAdvertbyIdController);
+advertsRouter.patch("/:advertId", ensureTokenExistis_middleware_1.default, checkParameterAdvertId_middleware_1.default, (0, checkRequestBody_middleware_1.default)(adverts_schemas_1.updateAdvertSchema), checkOwnerAdvert_middleware_1.default, adverts_controllers_1.updateAdvertbyIdController);
+advertsRouter.delete("/:advertId", ensureTokenExistis_middleware_1.default, checkParameterAdvertId_middleware_1.default, checkOwnerAdvert_middleware_1.default, adverts_controllers_1.deleteAdvertController);
+advertsRouter.post("/cover", upload.single("image"), ensureTokenExistis_middleware_1.default, adverts_controllers_1.generateURLImage);
+exports.default = advertsRouter;
