@@ -6,7 +6,7 @@ export const resetTokenController = async (
   req: Request,
   res: Response
 ): Promise<void> => {
-  const email = req.body.email;
+  const { email } = req.body;
 
   await resetTokenService(email);
 
