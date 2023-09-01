@@ -94,7 +94,7 @@ A API de gestão de biblioteca foi desenvolvida por uma equipe de desenvolvedore
 *  [Edvan Rodrigues](https://github.com/edvanrodriguesdev)
 *  [Gustavo Cruz](https://github.com/GustavoGCM)
 *  [Herli Khoury](https://github.com/HerliKhoury)
-*  [Muí Buarque](https://github.com/mauibuarque)
+*  [Mauí Buarque](https://github.com/mauibuarque)
 *  [Ubiratan Christian](https://github.com/unChrkr)
   
 Se você tiver alguma dúvida, sugestão ou feedback sobre a API,
