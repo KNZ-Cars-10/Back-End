@@ -10,17 +10,17 @@ export const resetTokenController = async (
 
   await resetTokenService(email);
 
-  res.status(200).json({ message: "E-mail enviado com sucesso!" });
+  res.json({ message: "E-mail enviado com sucesso!" });
 };
 
 export const resetPasswordController = async (
   req: Request,
   res: Response
 ): Promise<Response> => {
-  const token = req.params.token;
-  const newPassword = req.body.newPassword;
+  const { newPassword } = req.body;
+  const { token } = req.params;
 
-  await resetPasswordService(token, newPassword);
+  await resetPasswordService(newPassword, token);
 
-  return res.status(200).json({ message: "Senha redefinida com sucesso!" });
+  return res.json({ message: "Senha redefinida com sucesso!" });
 };
