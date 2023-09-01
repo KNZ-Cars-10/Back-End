@@ -20,6 +20,7 @@ export const userSchema = z.object({
   color: z.string(),
   avatar: z.string().nullable(),
   inicial: z.string(),
+  resetToken: z.string().nullable(),
 });
 
 export const userSchemaServiceRegister = userSchema

@@ -6,7 +6,7 @@ import {
 
 const recoverPasswordRouter = Router();
 
-recoverPasswordRouter.post("/forgot-password", resetTokenController);
+recoverPasswordRouter.post("/sendEmail", resetTokenController);
 
 recoverPasswordRouter.post("/:token", resetPasswordController);
 

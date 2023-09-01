@@ -39,7 +39,7 @@ app.use("/profile", profileRoutes);
 
 app.use("/comment", commentRoutes);
 
-app.use("/recover-password", recoverPasswordRouter);
+app.use("/recoverPassword", recoverPasswordRouter);
 
 app.use(handleErrors);
 
