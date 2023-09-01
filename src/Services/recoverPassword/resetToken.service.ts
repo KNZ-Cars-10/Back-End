@@ -42,7 +42,9 @@ const resetTokenService = async (userEmail: string) => {
         button: {
           color: "#4529E6",
           text: "Redefinir sua senha",
-          link: `${process.env.BASE_URL!}resetPassword/${resetToken}`,
+          link: `${process.env.BASE_URL!}resetPassword/${resetToken}/${
+            user.id
+          }`,
         },
       },
       outro:

@@ -27,6 +27,7 @@ export const userSchemaServiceRegister = userSchema
   .omit({
     id: true,
     createdAt: true,
+    resetToken: true,
   })
   .extend({
     password: z.string().min(8, "A senha deve ter no mínimo 8 caracteres."),
@@ -38,6 +39,7 @@ export const userSchemaRegister = userSchema
     createdAt: true,
     avatar: true,
     inicial: true,
+    resetToken: true,
   })
   .extend({
     password: z.string().min(8, "A senha deve ter no mínimo 8 caracteres."),
